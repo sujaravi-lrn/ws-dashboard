@@ -328,7 +328,6 @@ public class DashboardRESTfulController {
 			buf.append("/getDashboardDetails");
 			buf.append("/siteId=").append(siteId);
 			buf.append("/userId=").append(userId);
-			buf.append("......... with temporary changes");
 		logger.debug(buf);
 	
 		return dashboardService.getDashboardConfigurationForSite(siteId);
