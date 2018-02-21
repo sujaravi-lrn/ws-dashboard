@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       >
+
+  	<context:annotation-config/>
+	<context:component-scan base-package="com.lrn" />
+  	  	
+  	<bean id="userService" class="com.lrn.services.impl.UserService">
+  		<property name="userAdapter" ref="userAdapter" />
+  	</bean>
+  	
+  	<bean id="dashboardService" class="com.lrn.services.impl.DashboardService">
+  		<property name="dashboardAdapter" ref="dashboardAdapter" />
+  	</bean>
+  	  	
+  	<bean id="dashboardConfigurationService" class="com.lrn.services.impl.DashboardConfigurationService">
+  		<property name="dashboardConfigurationAdapter" ref="dashboardConfigurationAdapter" />
+  	</bean>
+
+  	<bean id="curriculumService" class="com.lrn.services.impl.CurriculumService">
+	  	<property name="curriculumAdapter" ref="curriculumAdapter" />
+  	</bean>
+ 
+  	<bean id="courseService" class="com.lrn.services.impl.CourseService">
+  		<property name="courseAdapter" ref="courseAdapter"/>
+  	</bean>
+
+  	<bean id="userAssignmentService" class="com.lrn.services.impl.UserAssignmentService">
+  		<property name="userAssignmentAdapter" ref="userAssignmentAdapter"/>
+  	</bean>
+  	
+  	<bean id="completionStatusReportService" class="com.lrn.services.impl.CompletionStatusReportService">
+  		<property name="completionStatusReportAdapter" ref="completionStatusReportAdapter"/>
+  		<property name="courseAdapter" ref="courseAdapter"/>
+  	</bean>
+  	
+  	<bean id="userReportsService" class="com.lrn.services.impl.UserReportsService">
+  		<property name="userReportsAdapter" ref="userReportsAdapter"/>
+  		<property name="reportQueueAdapter" ref="reportQueueAdapter" />
+  	</bean>
+  	
+    <bean id="eTLService" class="com.lrn.services.impl.ETLService">
+  		<property name="eTLSDao" ref="eTLDao"/>  	
+  	</bean> 
+  	  	
+  	<bean id="proxyService" class="com.lrn.services.impl.ProxyService">
+  		<property name="proxyAdapter" ref="proxyAdapter" />
+  	</bean>
+  	
+  		
+	<!-- - Report Queue Beans  -->
+  	<bean id="reportQueueThread" class="com.lrn.queue.ReportQueueThread">
+  		<property name="reportQueueAdapter" ref="reportQueueAdapter" />
+  	</bean>
+  	
+	<!-- bean id="reportQueueProcessor" class="com.lrn.queue.ReportQueueProcessor" init-method="init" destroy-method="destroy"-->
+	<bean id="reportQueueProcessor" class="com.lrn.queue.ReportQueueProcessor">
+		<property name="reportQueueAdapter" ref="reportQueueAdapter" />
+		<property name="runReportQueueThread"><value>${dashboard.queue.reports.thread.run}</value></property>
+	</bean>
+  	
+  	<!-- - Spring AOP related Configs START .... -->
+	
+	<!--  Before Advice Class -->
+	<!-- bean id="loggingBeforeMethod" class="com.lrn.aop.logging.LoggingBeforeMethod" /-->
+	
+	<!--  After Advice Class -->
+	<!-- bean id="loggingAfterMethod" class="com.lrn.aop.logging.LoggingAfterMethod" /-->
+	
+	<!--  Around Advice Class -->
+	<bean id="loggingAroundMethod" class="com.lrn.aop.logging.LoggingAroundMethod" />
+	
+	<!--  Pointcut for mapping method names -->
+	<bean id="loggingAroundPointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="getUserById" />
+    </bean>
+
+	<!-- MappedName Advisor for LoggingAroundPointcut -->
+    <bean id="loggingAroundMappedNameAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="loggingAroundPointcut" />
+        <property name="advice" ref="loggingAroundMethod" />
+    </bean>
+	
+	<!--  Regex Advisor for LoggingAroundPointcut -->
+	<bean id="loggingAroundRegexAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list><value>.*Service.*</value></list>
+        </property>
+        <property name="advice" ref="loggingAroundMethod" />
+    </bean>
+	
+	<!--  Regex Advisor for LoggingBeforePointcut -->
+	<!-- bean id="loggingBeforeRegexAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list><value>.*Service.*</value></list>
+        </property>
+        <property name="advice" ref="loggingBeforeMethod" />
+    </bean-->
+	
+	
+	<!--  Regex Advisor for LoggingAfterPointcut -->
+	<!-- bean id="loggingAfterRegexAdvisor"
+        class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+        <property name="patterns">
+            <list><value>.*Service.*</value></list>
+        </property>
+        <property name="advice" ref="loggingAfterMethod" />
+    </bean-->
+	
+	<!--  Static Proxy Creator, this we specify what service to use here and the proxy has to be called in order to use this spring AOP -->
+	<!-- bean id="aopLoggingServiceProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="userService" />
+        <property name="interceptorNames">
+            <list>
+                <value>loggingBeforeMethod</value>
+                <value>loggingAfterMethod</value>
+                <value>loggingAroundMethod</value>
+                <value>loggingAroundMappedNameAdvisor</value>
+                <value>loggingAroundRegexAdvisor</value>
+            </list>
+        </property>
+    </bean-->
+	
+	<!--  Auto Proxy Creator, this we specify it in the Service itself to mark it as autoProxy -->
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+        <property name="beanNames">
+            <list>
+                <value>*Service</value>
+            </list>
+        </property>
+        <property name="interceptorNames">
+            <list>
+                <!-- value>loggingBeforeRegexAdvisor</value-->
+                <value>loggingAroundRegexAdvisor</value>
+            	<!-- value>loggingAfterRegexAdvisor</value-->
+            </list>
+        </property>
+    </bean>
+	
+	<!-- - Spring AOP related Configs END  .... -->
+</beans>

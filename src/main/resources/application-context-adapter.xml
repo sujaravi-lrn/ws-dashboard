@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.lrn" />
+
+    <bean id="courseAdapter" class="com.lrn.adapter.impl.CourseAdapter">
+        <property name="courseManager" ref="courseManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+    </bean>
+    
+    <bean id="userAssignmentAdapter" class="com.lrn.adapter.impl.UserAssignmentAdapter">
+        <property name="userAssignmentManager" ref="userAssignmentManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+    </bean>
+    
+    <bean id="dashboardAdapter" class="com.lrn.adapter.impl.DashboardAdapter">
+        <property name="dashboardManager" ref="dashboardManager" />
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+        <property name="partnerSiteManager" ref="partnerSiteManager" />
+    </bean>
+    
+    <bean id="dashboardConfigurationAdapter" class="com.lrn.adapter.impl.DashboardConfigurationAdapter">
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+        <property name="companyUsersColumnManager" ref="companyUsersColumnManager" />
+    </bean>
+    
+    <bean id="userAdapter" class="com.lrn.adapter.impl.UserAdapter">
+        <property name="userManager" ref="userManager" />
+    </bean>
+    
+    <bean id="curriculumAdapter" class="com.lrn.adapter.impl.CurriculumAdapter">
+        <property name="dimCurriculumManager" ref="dimCurriculumManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+    </bean>
+    
+    <bean id="proxyAdapter" class="com.lrn.adapter.impl.ProxyAdapter">
+        <property name="proxyManager" ref="proxyManager" />
+        <property name="userManager" ref="userManager" />
+    </bean>
+    
+    <bean id="completionStatusReportAdapter" class="com.lrn.adapter.impl.CompletionStatusReportAdapter">
+        <property name="completionStatusReportManager" ref="completionStatusReportManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+        <property name="reportQueueManager" ref="reportQueueManager" />
+        <property name="reportQueueHistoryManager" ref="reportQueueHistoryManager" />
+    </bean>
+    
+     <bean id="userReportsAdapter" class="com.lrn.adapter.impl.UserReportsAdapter">
+        <property name="userReportsManager" ref="userReportsManager" />
+        <property name="userManager" ref="userManager" />
+        <property name="dashboardConfigurationManager" ref="dashboardConfigurationManager" />
+        <property name="dashboardSelectionCriteriaManager" ref="dashboardSelectionCriteriaManager" />
+        <property name="reportQueueManager" ref="reportQueueManager" />
+        <property name="reportQueueHistoryManager" ref="reportQueueHistoryManager" />
+    </bean>
+    
+     <bean id="reportQueueAdapter" class="com.lrn.adapter.impl.ReportQueueAdapter">
+        <property name="reportQueueManager" ref="reportQueueManager" />
+        <property name="reportQueueHistoryManager" ref="reportQueueHistoryManager" />
+        <property name="companyUsersColumnManager" ref="companyUsersColumnManager" />
+    </bean>
+
+</beans>

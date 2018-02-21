@@ -1,0 +1,111 @@
+package com.lrn.dto;
+
+public class GetCourseAssignmentStatusManagerDTO {
+	
+	private Long NOT_STARTED_NOT_DUE_YET;
+	private Long NOT_STARTED_PAST_DUE;
+	private Long NOT_STARTED_NO_DUE_DATE;
+	private Long IN_PROCESS_NOT_DUE_YET;
+	private Long IN_PROCESS_PAST_DUE;
+	private Long IN_PROCESS_NO_DUE_DATE;
+	private Long COMPLETE_ON_TIME;
+	private Long COMPLETE_PAST_DUE;
+	private Long COMPLETE_NO_DUE_DATE;
+	private Long COMPLETE_CREDITED_ON_TIME;
+	private Long COMPLETE_CREDITED_PAST_DUE;
+	private Long COMPLETE_CREDITED_NO_DUE_DATE;
+	
+	public Long getNOT_STARTED_NOT_DUE_YET() {
+		return NOT_STARTED_NOT_DUE_YET;
+	}
+	public void setNOT_STARTED_NOT_DUE_YET(Long nOT_STARTED_NOT_DUE_YET) {
+		NOT_STARTED_NOT_DUE_YET = nOT_STARTED_NOT_DUE_YET;
+	}
+	public Long getNOT_STARTED_PAST_DUE() {
+		return NOT_STARTED_PAST_DUE;
+	}
+	public void setNOT_STARTED_PAST_DUE(Long nOT_STARTED_PAST_DUE) {
+		NOT_STARTED_PAST_DUE = nOT_STARTED_PAST_DUE;
+	}
+	public Long getNOT_STARTED_NO_DUE_DATE() {
+		return NOT_STARTED_NO_DUE_DATE;
+	}
+	public void setNOT_STARTED_NO_DUE_DATE(Long nOT_STARTED_NO_DUE_DATE) {
+		NOT_STARTED_NO_DUE_DATE = nOT_STARTED_NO_DUE_DATE;
+	}
+	public Long getIN_PROCESS_NOT_DUE_YET() {
+		return IN_PROCESS_NOT_DUE_YET;
+	}
+	public void setIN_PROCESS_NOT_DUE_YET(Long iN_PROCESS_NOT_DUE_YET) {
+		IN_PROCESS_NOT_DUE_YET = iN_PROCESS_NOT_DUE_YET;
+	}
+	public Long getIN_PROCESS_PAST_DUE() {
+		return IN_PROCESS_PAST_DUE;
+	}
+	public void setIN_PROCESS_PAST_DUE(Long iN_PROCESS_PAST_DUE) {
+		IN_PROCESS_PAST_DUE = iN_PROCESS_PAST_DUE;
+	}
+	public Long getIN_PROCESS_NO_DUE_DATE() {
+		return IN_PROCESS_NO_DUE_DATE;
+	}
+	public void setIN_PROCESS_NO_DUE_DATE(Long iN_PROCESS_NO_DUE_DATE) {
+		IN_PROCESS_NO_DUE_DATE = iN_PROCESS_NO_DUE_DATE;
+	}
+	public Long getCOMPLETE_ON_TIME() {
+		return COMPLETE_ON_TIME;
+	}
+	public void setCOMPLETE_ON_TIME(Long cOMPLETE_ON_TIME) {
+		COMPLETE_ON_TIME = cOMPLETE_ON_TIME;
+	}
+	public Long getCOMPLETE_PAST_DUE() {
+		return COMPLETE_PAST_DUE;
+	}
+	public void setCOMPLETE_PAST_DUE(Long cOMPLETE_PAST_DUE) {
+		COMPLETE_PAST_DUE = cOMPLETE_PAST_DUE;
+	}
+	public Long getCOMPLETE_NO_DUE_DATE() {
+		return COMPLETE_NO_DUE_DATE;
+	}
+	public void setCOMPLETE_NO_DUE_DATE(Long cOMPLETE_NO_DUE_DATE) {
+		COMPLETE_NO_DUE_DATE = cOMPLETE_NO_DUE_DATE;
+	}
+	public Long getCOMPLETE_CREDITED_ON_TIME() {
+		return COMPLETE_CREDITED_ON_TIME;
+	}
+	public void setCOMPLETE_CREDITED_ON_TIME(Long cOMPLETE_CREDITED_ON_TIME) {
+		COMPLETE_CREDITED_ON_TIME = cOMPLETE_CREDITED_ON_TIME;
+	}
+	public Long getCOMPLETE_CREDITED_PAST_DUE() {
+		return COMPLETE_CREDITED_PAST_DUE;
+	}
+	public void setCOMPLETE_CREDITED_PAST_DUE(Long cOMPLETE_CREDITED_PAST_DUE) {
+		COMPLETE_CREDITED_PAST_DUE = cOMPLETE_CREDITED_PAST_DUE;
+	}
+	public Long getCOMPLETE_CREDITED_NO_DUE_DATE() {
+		return COMPLETE_CREDITED_NO_DUE_DATE;
+	}
+	public void setCOMPLETE_CREDITED_NO_DUE_DATE(Long cOMPLETE_CREDITED_NO_DUE_DATE) {
+		COMPLETE_CREDITED_NO_DUE_DATE = cOMPLETE_CREDITED_NO_DUE_DATE;
+	}
+
+	public boolean isEmpty() {
+		
+		if(this != null 
+				&& this.getCOMPLETE_CREDITED_NO_DUE_DATE() == 0L 
+				&& this.getCOMPLETE_CREDITED_ON_TIME() == 0L
+				&& this.getCOMPLETE_CREDITED_PAST_DUE() == 0L
+				&& this.getCOMPLETE_NO_DUE_DATE() == 0L
+				&& this.getCOMPLETE_ON_TIME() == 0L
+				&& this.getCOMPLETE_PAST_DUE() == 0L
+				&& this.getIN_PROCESS_NO_DUE_DATE() == 0L
+				&& this.getIN_PROCESS_NOT_DUE_YET() == 0L
+				&& this.getIN_PROCESS_PAST_DUE() == 0L
+				&& this.getNOT_STARTED_NO_DUE_DATE() == 0L
+				&& this.getNOT_STARTED_NOT_DUE_YET() == 0L
+				&& this.getNOT_STARTED_PAST_DUE() == 0L
+				)
+			return true;
+		
+		return false;
+	}
+}

@@ -1,0 +1,699 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lrn</groupId>
+	<artifactId>catalystdashboard</artifactId>
+	<version>statusreport-2017.5</version>
+	<name>catalystdashboard Service Maven Webapp</name>
+	<description>RestFul web services.</description>
+	<packaging>war</packaging>
+
+	<repositories>
+
+		<repository>
+			<id>local-repo</id>
+			<url>http://10.1.107.108/maven2</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>http://central.maven.org/maven2</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>local-repo</id>
+			<name>Maven Plugin Repository</name>
+			<url>http://10.1.107.108/maven2</url>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<reporting>
+        <plugins>
+        	<!-- Tomcat Maven Plugin -->
+	        <plugin>
+	        	<groupId>org.codehaus.mojo</groupId>
+	          	<artifactId>tomcat-maven-plugin</artifactId>
+	          	<configuration>
+	          		<server>tomcatserver</server>
+	          		<path>/catalystdashboard</path>
+	          	</configuration>
+	        </plugin>
+		</plugins>
+    </reporting>
+	        
+    <dependencies>
+		<!-- Oracle 11G Driver -->
+		<dependency>
+			<groupId>com.oracle</groupId>
+			<artifactId>oracle</artifactId>
+			<version>11.2.0.3</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- Logging -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>1.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.jersey</groupId>
+			<artifactId>jersey-json</artifactId>
+			<version>1.8</version>
+		</dependency>
+
+		<!-- Spring frameowrk -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-beans</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<!-- Services runs without following spring dependency but will be needed 
+			while writing test cases -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-oxm</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
+		
+		<!-- Jackson JSON Mapper -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+
+		<!-- Hibernate Framework -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>4.0.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>4.2.0.Final</version>
+        </dependency>        
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>4.0.1.Final</version>
+            <classifier>tests</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+            <version>1.0.1.Final</version>
+        </dependency>      
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.0.1.Final</version>
+        </dependency>       
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>1.0.0.GA</version>
+            <scope>provided</scope>
+        </dependency>
+
+		<!-- Logging dependency -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-jdk14</artifactId>
+			<version>1.7.5</version>
+		</dependency>
+
+		<!-- Debugging dependency -->
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>3.15.0-GA</version>
+		</dependency>
+
+		<!-- Connection pooling dependency -->
+		<dependency>
+			<groupId>c3p0</groupId>
+			<artifactId>c3p0</artifactId>
+			<version>0.9.1.2</version>
+		</dependency>
+
+		<!-- AOP dependency -->
+		<dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+			<version>3.0</version>
+		</dependency>
+
+		<!-- Templating Engine -->
+		<dependency>
+			<groupId>velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>1.5</version>
+		</dependency>
+		<dependency>
+	        <groupId>javax.mail</groupId>
+	        <artifactId>mail</artifactId>
+	        <version>1.4</version>
+    	</dependency>
+    	<dependency>
+        	<groupId>javax.activation</groupId>
+        	<artifactId>activation</artifactId>
+        	<version>1.1</version>
+    	</dependency>
+
+		<!-- CXF related dependencies -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-ws-security</artifactId>
+			<version>2.7.7</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-bundle</artifactId>
+			<version>3.0.0-milestone2</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.geronimo.specs</groupId>
+					<artifactId>geronimo-servlet_3.0_spec</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpg-jdk15</artifactId>
+			<version>1.46</version>
+		</dependency>
+
+		<!-- Http component jars -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>4.1.1.Final</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>hibernate-core</artifactId>
+					<groupId>org.hibernate</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search-analyzers</artifactId>
+			<version>4.1.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+				
+		<!-- http://mvnrepository.com/artifact/commons-dbcp/commons-dbcp - For JUNIT testing -->
+		<dependency>
+		    <groupId>commons-dbcp</groupId>
+		    <artifactId>commons-dbcp</artifactId>
+		    <version>1.4</version>
+		</dependency>
+		
+		<!-- dependency>
+    		<groupId>org.apache.tomcat</groupId>
+		    <artifactId>catalina</artifactId>
+		    <version>6.0.43</version>
+		</dependency>
+
+		<dependency>
+		    <groupId>org.apache.tomcat</groupId>
+		    <artifactId>tomcat-catalina</artifactId>
+		    <version>8.0.15</version>
+		</dependency-->
+
+		<dependency>
+	        <groupId>simple-jndi</groupId>
+	        <artifactId>simple-jndi</artifactId>
+	        <version>0.11.4.1</version>
+	        <scope>test</scope>
+	    </dependency>
+	</dependencies>
+
+	<build>
+		<finalName>catalystdashboard</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.mortbay.jetty</groupId>
+				<artifactId>maven-jetty-plugin</artifactId>
+				<version>6.1.5</version>
+				<configuration>
+					<requestLog implementation="org.mortbay.jetty.NCSARequestLog">
+						<filename>target/yyyy_mm_dd.request.log</filename>
+						<retainDays>10</retainDays>
+						<append>true</append>
+						<extended>true</extended>
+						<logTimeZone>GMT-8</logTimeZone>
+					</requestLog>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<dependencyLocationsEnabled>false</dependencyLocationsEnabled>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>cobertura-maven-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<check>
+						<!--<haltOnFailure>true</haltOnFailure> --><!-- optional -->
+						<!-- Per-class thresholds -->
+						<!-- <lineRate>80</lineRate>
+						<branchRate>80</branchRate>
+						Project-wide thresholds
+						<totalLineRate>90</totalLineRate>
+						<totalBranchRate>90</totalBranchRate> -->
+						<lineRate>0</lineRate>
+						<branchRate>0</branchRate>
+						<!-- Project-wide thresholds -->
+						<totalLineRate>0</totalLineRate>
+						<totalBranchRate>0</totalBranchRate>
+					</check>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>verify</phase>
+						<goals>
+							<!--<goal>clean</goal> --><!-- works if uncommented -->
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+		<resources>
+			<resource>
+				<directory>src/main/filter</directory>
+				<filtering>true</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+			</resource>
+
+		</resources>
+	</build>
+	<properties>
+
+		<lrn.jdbc.driverClassName>oracle.jdbc.driver.OracleDriver</lrn.jdbc.driverClassName>
+		<lrn.jdbc.driverType>jdbc:oracle:thin</lrn.jdbc.driverType>
+		<!-- lcec.jdbc.port>1521</lcec.jdbc.port -->
+		<lrn.smtp.host>mailhost.corp.lrn.com</lrn.smtp.host>
+		<lrn.smtp.port>25</lrn.smtp.port>
+        <hibernate.show.sql>false</hibernate.show.sql>
+        <root_log_level>ERROR</root_log_level>
+        <log_level>DEBUG</log_level>
+		
+		<!--  Dashboard Queue Processor properties -->
+    	<dashboard.queue.reports.thread.run>false</dashboard.queue.reports.thread.run>
+    	<dashboard.queue.reports.path>/var/tmp/dashboard-reports/</dashboard.queue.reports.path>
+     	<dashboard.queue.temp.reports.path>/var/tmp/dashboard-reports/temp/</dashboard.queue.temp.reports.path>
+     	
+		<!-- Environment name -->
+		<environment.name>environment</environment.name>
+
+		<darla-symlink>abc</darla-symlink>
+	</properties>
+	<profiles>
+		<profile>
+			<id>dim_dev</id>
+			<properties>
+				<!-- dim development specific settings -->
+				<lcec.jdbc.ip>10.103.30.33</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcebmvd3</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>lcecdw</lcec.jdbc.username>
+				<lcec.jdbc.password>lcecdw</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_DARLA</darla-symlink>
+				<!-- SMTP settings -->
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>dim_dev</environment.name>
+			</properties>
+		</profile>
+		<profile>
+			<id>dim_qa</id>
+			<properties>
+				<!-- New ETL database specific settings -->
+				<lcec.jdbc.ip>10.103.30.41</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcbmvq15</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>lcecdw</lcec.jdbc.username>
+				<lcec.jdbc.password>dwetldba</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_DARLA</darla-symlink>
+
+				<!-- Old ETL database specific settings -->
+				<!-- lcec.jdbc.ip>10.103.30.41</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcbmvq15</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>lcecdw</lcec.jdbc.username>
+				<lcec.jdbc.password>dwetldba</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port-->
+
+				<!-- SMTP settings -->
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>dim_qa</environment.name>
+
+
+			</properties>
+		</profile>
+
+		<!-- QA Build profile -->
+		<profile>
+			<id>qa2</id>
+			<properties>
+				<!-- lcec specific settings -->
+				<lcec.jdbc.ip>10.103.30.33</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>LCECBQ2</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>lcec</lcec.jdbc.username>
+				<lcec.jdbc.password>lcec</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+				<!-- SMTP settings -->
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>qa2</environment.name>
+			</properties>
+		</profile>
+
+		<profile>
+            <id>qa3</id>
+            <properties>
+                <!-- lcec specific settings -->
+                <lcec.jdbc.ip>10.103.30.41</lcec.jdbc.ip>
+                <lcec.jdbc.serviceName>LCEBMVQ3</lcec.jdbc.serviceName>
+                <lcec.jdbc.port>1526</lcec.jdbc.port>
+				<lcec.jdbc.username>dashboard</lcec.jdbc.username>
+				<lcec.jdbc.password>dashboard</lcec.jdbc.password>
+				
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+				
+                <!-- Logging -->
+                <root_log_level>DEBUG</root_log_level>
+                <log_level>DEBUG</log_level>
+
+                <!-- SMTP -->
+                <lrn.smtp.host>10.103.30.22</lrn.smtp.host>
+                <lrn.smtp.port>25</lrn.smtp.port>
+            </properties>
+        </profile>
+        
+		<profile>
+			<id>qa4</id>
+			<properties>
+				<!-- lcec specific settings -->
+				<lcec.jdbc.ip>10.103.30.30</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcecgq4</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>lcec</lcec.jdbc.username>
+				<lcec.jdbc.password>lcec</lcec.jdbc.password>
+				<lcec.jdbc.port>1521</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+
+				<!-- SMTP settings -->
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>qa4</environment.name>
+			</properties>
+		</profile>
+
+		<profile>
+			<id>qa5</id>
+			<activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+  			<properties>
+				<!-- New ETL database specific settings -->
+				<lcec.jdbc.ip>10.103.30.30</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcebmvq5</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>dashboard</lcec.jdbc.username>
+				<lcec.jdbc.password>dashboard</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>qa7</environment.name>
+				
+				<root_log_level>DEBUG</root_log_level>
+				<log_level>DEBUG</log_level>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>qa15</id>
+  			<properties>
+				<!-- New ETL database specific settings -->
+				<lcec.jdbc.ip>10.103.30.41</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcbmvq15</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>dashboard</lcec.jdbc.username>
+				<lcec.jdbc.password>dashboard</lcec.jdbc.password>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>qa7</environment.name>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>staging</id>
+			<properties>
+				<!-- lcec specific settings -->
+				<lcec.jdbc.ip>10.101.2.55</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>LCEBMVS1</lcec.jdbc.serviceName>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+				<lcec.jdbc.username>dashboard</lcec.jdbc.username>
+				<lcec.jdbc.password>dashboard</lcec.jdbc.password>
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+
+				<!-- lcecbulk specific settings -->
+				<!-- <lcecbulk.jdbc.ip>10.101.2.231</lcecbulk.jdbc.ip> <lcecbulk.jdbc.serviceName>bulkdb</lcecbulk.jdbc.serviceName> 
+					<lcecbulk.jdbc.port>1526</lcecbulk.jdbc.port> -->
+
+				<!-- Logging -->
+				<root_log_level>DEBUG</root_log_level>
+				<log_level>DEBUG</log_level>
+
+				<!-- SMTP -->
+				<lrn.smtp.host>mailhost.lax.lrn.com</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>eupoc</id>
+  			<properties>
+				<!-- New ETL database specific settings -->
+				<lcec.jdbc.ip>10.110.7.6</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcegeup</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>dashboard</lcec.jdbc.username>
+				<lcec.jdbc.password>Dash37#b0ard</lcec.jdbc.password>
+				<lcec.jdbc.port>2598</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_DARLA.LRN.COM</darla-symlink>
+				
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>eupoc</environment.name>
+			</properties>
+		</profile>
+		
+		<profile>
+			<id>eupoc-stg</id>
+  			<properties>
+				<!-- New ETL database specific settings -->
+				<lcec.jdbc.ip>10.110.7.6</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>lcegeup</lcec.jdbc.serviceName>
+				<lcec.jdbc.username>dashboard_stg</lcec.jdbc.username>
+				<lcec.jdbc.password>Dash37#b0ard_stg</lcec.jdbc.password>
+				<lcec.jdbc.port>2598</lcec.jdbc.port>
+				<darla-symlink>DL_LCECDW_DARLA.LRN.COM</darla-symlink>
+				
+				<lrn.smtp.host>10.103.30.13</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+				<!-- Environment name -->
+				<environment.name>eupoc</environment.name>
+			</properties>
+		</profile>
+		
+		
+		<profile>
+			<id>prod</id>
+			<properties>
+				<!-- lcec specific settings -->
+				<lcec.jdbc.ip>10.101.2.57</lcec.jdbc.ip>
+				<lcec.jdbc.serviceName>LCECMV</lcec.jdbc.serviceName>
+				<lcec.jdbc.port>1526</lcec.jdbc.port>
+
+				<darla-symlink>DL_LCECDW_APP_DARLA</darla-symlink>
+
+				<!-- lcecbulk specific settings -->
+				<!-- <lcecbulk.jdbc.ip>10.101.2.231</lcecbulk.jdbc.ip> <lcecbulk.jdbc.serviceName>bulkdb</lcecbulk.jdbc.serviceName> 
+					<lcecbulk.jdbc.port>1526</lcecbulk.jdbc.port> -->
+
+				<!-- Logging -->
+				<root_log_level>DEBUG</root_log_level>
+				<log_level>DEBUG</log_level>
+
+				<!-- SMTP -->
+				<lrn.smtp.host>mailhost.lax.lrn.com</lrn.smtp.host>
+				<lrn.smtp.port>25</lrn.smtp.port>
+
+			</properties>
+		</profile>
+		
+		<!-- Prod UK Build profile -->
+        <profile>
+            <id>produk</id>
+            <properties>
+                <!-- lcec specific settings -->
+                <lcec.jdbc.ip>192.168.100.133</lcec.jdbc.ip>
+                <lcec.jdbc.serviceName>lcegeup</lcec.jdbc.serviceName>
+                <lcec.jdbc.port>2598</lcec.jdbc.port>
+
+				<darla-symlink>DL_LCECDW_DARLA.LRN.COM</darla-symlink>
+				
+                <!-- Logging -->
+                <root_log_level>DEBUG</root_log_level>
+                <log_level>DEBUG</log_level>
+
+                <!-- SMTP -->
+                <lrn.smtp.host>mailhost.lax.lrn.com</lrn.smtp.host>
+                <lrn.smtp.port>25</lrn.smtp.port>
+            </properties>
+        </profile>
+        
+	</profiles>
+</project>

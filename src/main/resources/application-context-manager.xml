@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.lrn" />
+
+	<bean id="courseManager" class="com.lrn.manager.impl.CourseManager">
+		<property name="courseDao" ref="courseDao" />
+	</bean>
+	
+	<bean id="userAssignmentManager" class="com.lrn.manager.impl.UserAssignmentManager">
+		<property name="userAssignmentDao" ref="userAssignmentDao" />
+	</bean>
+		
+	<bean id="userManager" class="com.lrn.manager.impl.UserManager">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+	<bean id="dashboardSelectionCriteriaManager" class="com.lrn.manager.impl.DashboardSelectionCriteriaManager">
+		<constructor-arg ref="dashboardSelectionCriteriaDao" />
+		<property name="dashboardSelectionCriteriaDao" ref="dashboardSelectionCriteriaDao" />
+	</bean>
+	
+	<bean id="dashboardConfigurationManager" class="com.lrn.manager.impl.DashboardConfigurationManager">
+		<constructor-arg ref="dashboardConfigurationDao" />
+		<property name="dashboardConfigurationDao" ref="dashboardConfigurationDao" />
+	</bean>
+	
+	<bean id="dashboardManager" class="com.lrn.manager.impl.DashboardManager"  init-method="init">
+		<constructor-arg ref="dashboardDao" />
+		<property name="dashboardDao" ref="dashboardDao" />
+	</bean>
+	
+	<bean id="partnerSiteManager" class="com.lrn.manager.impl.PartnerSiteManager">
+		<property name="partnerSiteDao" ref="partnerSiteDao" />
+	</bean>
+	
+	<bean id="companyUsersColumnManager" class="com.lrn.manager.impl.CompanyUsersColumnManager">
+		<constructor-arg ref="companyUsersColumnDao" />
+		<property name="companyUsersColumnDao" ref="companyUsersColumnDao" />
+	</bean>
+	
+	<bean id="dimCurriculumManager" class="com.lrn.manager.impl.DimCurriculumManager">
+		<constructor-arg ref="dimCurriculumDao" />
+		<property name="dimCurriculumDao" ref="dimCurriculumDao" />
+	</bean>
+	
+	<bean id="proxyManager" class="com.lrn.manager.impl.ProxyManager">
+		<constructor-arg ref="proxyDao" />
+		<property name="proxyDao" ref="proxyDao" />
+	</bean>
+	
+	<bean id="completionStatusReportManager" class="com.lrn.manager.impl.CompletionStatusReportManager">
+		<property name="completionStatusReportDao" ref="completionStatusReportDao" />
+	</bean>
+	
+	<bean id="userReportsManager" class="com.lrn.manager.impl.UserReportsManager">
+		<property name="userReportsDao" ref="userReportsDao" />
+	</bean>
+	
+	<bean id="reportQueueManager" class="com.lrn.manager.impl.ReportQueueManager">
+		<constructor-arg ref="reportQueueDao" />
+		<property name="reportQueueDao" ref="reportQueueDao" />
+		<property name="dashboardQueueReportsPath"><value>${dashboard.queue.reports.path}</value></property>
+	</bean>
+	
+	<bean id="reportQueueHistoryManager" class="com.lrn.manager.impl.ReportQueueHistoryManager">
+		<constructor-arg ref="reportQueueHistoryDao" />
+		<property name="reportQueueHistoryDao" ref="reportQueueHistoryDao" />
+	</bean>
+</beans>

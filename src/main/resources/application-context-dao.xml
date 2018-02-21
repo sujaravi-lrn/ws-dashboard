@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+       >
+
+	<context:annotation-config/>
+	<context:component-scan base-package="com.lrn" />
+
+	<bean id="userDao" class="com.lrn.dao.impl.UserDao"> 
+	 	<constructor-arg value="com.lrn.model.User"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="dashboardDao" class="com.lrn.dao.impl.DashboardDao"> 
+	 	<constructor-arg value="com.lrn.model.Dashboard"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="dashboardConfigurationDao" class="com.lrn.dao.impl.DashboardConfigurationDao"> 
+	 	<constructor-arg value="com.lrn.model.DashboardConfiguration"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+
+	<bean id="partnerSiteDao" class="com.lrn.dao.impl.PartnerSiteDao"> 
+	 	<constructor-arg value="com.lrn.model.PartnerSite"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean> 
+
+	<bean id="dimCurriculumDao" class="com.lrn.dao.impl.DimCurriculumDao"> 
+	 	<constructor-arg value="com.lrn.model.DimCurriculum"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="dashboardSelectionCriteriaDao" class="com.lrn.dao.impl.DashboardSelectionCriteriaDao"> 
+	 	<constructor-arg value="com.lrn.model.DashboardSelectionCriteria"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	 	<property name="partnerSiteDao" ref="partnerSiteDao" />
+	 	<property name="companyUsersColumnDao" ref="companyUsersColumnDao" />
+	 	<property name="dashboardConfigurationDao" ref="dashboardConfigurationDao" />
+	</bean>
+		
+    <bean id="companyUsersColumnDao" class="com.lrn.dao.impl.CompanyUsersColumnDao"> 
+	 	<constructor-arg value="com.lrn.model.CompanyUsersColumn"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	  	<property name="partnerSiteDao" ref="partnerSiteDao" />
+	</bean>	
+	
+	<bean id="courseDao" class="com.lrn.dao.impl.CourseDao"> 
+	 	<constructor-arg value="com.lrn.model.FactModuleStatus"/>
+	 	<property name="dashboardSelectionCriteriaDao" ref="dashboardSelectionCriteriaDao" />	
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="userAssignmentDao" class="com.lrn.dao.impl.UserAssignmentDao"> 
+	 	<constructor-arg value="com.lrn.model.FactModuleStatus"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="eTLDao" class="com.lrn.dao.impl.ETLDao">
+	 	<constructor-arg value="com.lrn.model.ETL"/>
+	  	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="proxyDao" class="com.lrn.dao.impl.ProxyDao"> 
+	 	<constructor-arg value="com.lrn.model.DashboardProxy"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+		
+	<bean id="completionStatusReportDao" class="com.lrn.dao.impl.CompletionStatusReportDao"> 
+	 	<constructor-arg value="com.lrn.model.FactModuleStatus"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="userReportsDao" class="com.lrn.dao.impl.UserReportsDao"> 
+	 	<constructor-arg value="com.lrn.model.FactModuleStatus"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="reportQueueDao" class="com.lrn.dao.impl.ReportQueueDao"> 
+	 	<constructor-arg value="com.lrn.model.ReportQueue"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+	
+	<bean id="reportQueueHistoryDao" class="com.lrn.dao.impl.ReportQueueHistoryDao"> 
+	 	<constructor-arg value="com.lrn.model.ReportQueueHistory"/>
+	 	<property name="sessionFactory" ref="lcecSessionFactory" />
+	</bean>
+</beans>
